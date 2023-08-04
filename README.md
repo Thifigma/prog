@@ -1,2 +1,3 @@
-# prog
-Trabalhos desenvolvidos na disciplina de Programação no Departamento de Informática da Universidade Federal do Paraná.
+# Programação 1
+
+Pagina da disciplina: https://www.inf.ufpr.br/cursos/ci1001/

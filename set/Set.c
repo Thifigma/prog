@@ -90,6 +90,7 @@ void une(struct set *uniao, struct set s1, struct set s2)
 	int k = 0; /* Indice de uniao. 	*/
 
 	while (i < tamS1 || j < tamS2) {
+		
 		if (i < tamS1 && (j >= tamS2 || s1.elements[i] <= s2.elements[j])) {
 			uniao->elements[k] = s1.elements[i];
 			i++;
@@ -100,6 +101,8 @@ void une(struct set *uniao, struct set s1, struct set s2)
 
 		k++;
 	}
+
+	sortSet(uniao, 0, (tamS1+tamS2));
 }
 
 void printUnion(struct set s1, struct set s2) 

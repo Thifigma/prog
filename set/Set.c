@@ -27,11 +27,11 @@ bool isEmpty(struct set s) {
 
 void startSet(struct set *s)
 {
-	srand(42);
+	srand(time(NULL));
 	
-	printf ("Tamanho do conjunto: ");
+	
 	do {
-		scanf ("%d", &s->size);	
+		s->size = MIN +rand() % (MAX - MIN + 1);	
 	} while (s->size > MAXSIZE);
 
 	for (int i = 0; i < size(*s); i++) {
@@ -97,22 +97,19 @@ void une(struct set *uniao, struct set s1, struct set s2)
 
 void printUnion(struct set s1, struct set s2) 
 {
-	if ( (isEmpty(s1)) && (isEmpty(s2)) ) {
-		printf ("Conjunto vazio! \n");
-		return;
-	}
-
 	struct set u;
 	u.size = size(s1) + size(s2);
 	u.elements[size(u)];
 
 	une(&u, s1, s2);
 	sortSet(&u, 0, size(u));
+	printf ("Uniao:");
 	printSet(u);
+	printf ("\n");
 }
 
 void printIntersection(struct set s1, struct set s2) {
-	// completar
+	
 	
 	return;
 }

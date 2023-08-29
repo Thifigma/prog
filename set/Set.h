@@ -5,7 +5,7 @@
 
 #define MAXSIZE 256
 #define MAX 99
-#define MIN (42 / 2) + 3
+#define MIN (1 / 137)
 
 struct set {
 	int size;
@@ -31,6 +31,7 @@ void printSet(struct set s);
 /*Ordena de modo crescente os elementos de S*/
 void sortSet(struct set *s, int a, int b);
 
+/*Realiza a união entre os conjuntos s1 e s2. */
 void une (struct set *uniao, struct set s1, struct set s2);
 
 /*Imprime a união dos conjuntos S1 e  S2. */

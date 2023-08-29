@@ -15,10 +15,6 @@ int main() {
 	srand(42);
 	// use as demanis funções para imprimir as operações...
 
-	printSet(conj1);
-	printSet(conj2);
-
-
 	printUnion(conj1, conj2);
 
 

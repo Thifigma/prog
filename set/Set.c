@@ -15,10 +15,10 @@ bool isIn(struct set s, int x)
 	return false;
 }
 
-bool isEmpty(struct set s) {
-	int tam = size(s);
+bool isEmpty(struct set s) 
+{
 
-	if(!(tam)) {
+	if(!(size(s))) {
 		return true;
 	}
 
@@ -31,12 +31,14 @@ void startSet(struct set *s)
 	
 	
 	do {
-		s->size = MIN +rand() % (MAX - MIN + 1);	
+		scanf("%d", &s->size); 	
 	} while (s->size > MAXSIZE);
 
 	for (int i = 0; i < size(*s); i++) {
 		s->elements[i] = MIN +rand() % (MAX - MIN + 1);
 	}
+
+	return;
 }
 
 void printSet(struct set s) {
@@ -52,13 +54,13 @@ void printSet(struct set s) {
 		printf("%d ", s.elements[i]);
 
 	printf("\n");
+	return;
 }	
 
 void sortSet(struct set *s, int a, int b) 
 {
     for (int i = 1; i < size(*s); i++) {
-        
-		int valor = s->elements[i];
+	int valor = s->elements[i];
         int j = i;
 
         while (j > 0 && s->elements[j - 1] > valor) {
@@ -68,13 +70,12 @@ void sortSet(struct set *s, int a, int b)
  
         s->elements[j] = valor;
     }
+
+    return;
 }
 
 void une(struct set *uniao, struct set s1, struct set s2) 
 {
-	int tamS1 = size(s1);
-	int tamS2 = size(s2);
-	
 	int i = 0; /* Indice de s1.  	*/
 	int j = 0; /* Indice de s2.    	*/
 	int k = 0; /* Indice de uniao. 	*/
@@ -82,8 +83,8 @@ void une(struct set *uniao, struct set s1, struct set s2)
 	sortSet(&s1, 0, size(s1));
 	sortSet(&s2, 0, size(s2));
 
-	while (i < tamS1 || j < tamS2) {
-		if (i < tamS1 && (j >= tamS2 || s1.elements[i] <= s2.elements[j])) {
+	while (i < size(s1) || j < size(s2)) {
+		if (i < size(s1) && (j >= size(s2) || s1.elements[i] <= s2.elements[j])) {
 			uniao->elements[k] = s1.elements[i];
 			i++;
 		} else { 
@@ -93,6 +94,8 @@ void une(struct set *uniao, struct set s1, struct set s2)
 
 		k++;
 	}
+
+	return;
 }
 
 void printUnion(struct set s1, struct set s2) 
@@ -103,19 +106,71 @@ void printUnion(struct set s1, struct set s2)
 
 	une(&u, s1, s2);
 	sortSet(&u, 0, size(u));
-	printf ("Uniao:");
-	printSet(u);
-	printf ("\n");
+
+	printf ("Uniao "); printSet(u); printf ("\n");
+	return;
 }
 
-void printIntersection(struct set s1, struct set s2) {
+void printIntersection(struct set s1, struct set s2) 
+{
+	int i = 0; /*Indice de s1. */
+	int j = 0; /*Incide de s2. */
+	int k = 0; /*Indice de intersecção. */
 	
-	
+	struct set intersec;
+ 	intersec.size = (size(s1) + size(s2));
+	intersec.elements[size(intersec)];
+
+	sortSet(&s1, 0, size(s1));
+	sortSet(&s2, 0, size(s2));
+
+	while (i < size(s1) && j < size(s2)) {
+		if (s1.elements[i] == s2.elements[j]) {
+			intersec.elements[k] = s1.elements[i];
+			k++;
+		}
+
+		i++;
+		j++;
+	}
+
+	intersec.size = k;
+	intersec.elements[k];
+
+	printf("Interseccao "); printSet(intersec); printf ("\n");	
 	return;
 }
 
 void printDifference(struct set s1, struct set s2) {
 	// completar
 	
+	int i = 0; /*Indice de s1. */
+	int j = 0; /*Incide de s2. */
+	int k = 0; /*Indice de intersecção. */
+	
+	struct set dif;
+ 	dif.size = (size(s1) + size(s2));
+	dif.elements[size(dif)];
+
+	sortSet(&s1, 0, size(s1));
+	sortSet(&s2, 0, size(s2));
+
+	while (i < size(s1) && j < size(s2)) {
+		if (s1.elements[i] != s2.elements[j]) {
+			dif.elements[k] = s1.elements[i];
+			k++;
+			dif.elements[k] = s2.elements[j];
+			k++;
+		}
+
+		i++;
+		j++;
+	}
+	
+	dif.size = k;
+	dif.elements[k];
+	
+	sortSet(&dif, 0, size(dif));
+	printf("diferenca "); printSet(dif); printf("\n");	
 	return;
 }

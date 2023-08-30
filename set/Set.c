@@ -41,7 +41,8 @@ void startSet(struct set *s)
 	return;
 }
 
-void printSet(struct set s) {
+void printSet(struct set s) 
+{
 	// verificar se S não-vazio antes de proceder...
 
 	if ((isEmpty(s))) {
@@ -74,6 +75,8 @@ void sortSet(struct set *s, int a, int b)
     return;
 }
 
+/*Percorre os dois vetores fazendo comparações entre os elementos. 
+ */ 
 void une(struct set *uniao, struct set s1, struct set s2) 
 {
 	int i = 0; /* Indice de s1.  	*/
@@ -141,7 +144,8 @@ void printIntersection(struct set s1, struct set s2)
 	return;
 }
 
-void printDifference(struct set s1, struct set s2) {
+void printDifference(struct set s1, struct set s2) 
+{
 	// completar
 	
 	int i = 0; /*Indice de s1. */
@@ -171,6 +175,39 @@ void printDifference(struct set s1, struct set s2) {
 	dif.elements[k];
 	
 	sortSet(&dif, 0, size(dif));
-	printf("diferenca "); printSet(dif); printf("\n");	
+	printf("Diferenca "); printSet(dif); printf("\n");	
 	return;
+}
+
+	/*s1 é subconjunto de s2 se, e somente se, todo elemento de s1, 
+	 * pertencer a s2.  
+	 */
+bool isSubset(struct set s1, struct set s2)
+{
+
+	int i = 0; 		/*Indice de s1. */
+	int j = 0; 		/*Indice de s2. */
+	bool pertence  = false; /*Controle de pertencimento. */
+
+	/* A verificação de cada i de s1 vai ser feita para todo s2
+	 */
+	for (int i = 0; i < size(s1); i++) { 
+		pertence = false;
+		for (int j = 0; j < size(s2); j++) { 
+			if (s1.elements[i] == s2.elements[j])
+				pertence = true;
+		}
+		
+
+	/* Como a variavel não foi alterada, significa que 
+	 * pelo menos 1 elemento de s1 não pertence a s2, logo, não é subconjunto.
+	 */
+		if (pertence == false) { 
+			return false;
+		}
+
+		i++;
+	}
+	
+	return pertence;
 }
